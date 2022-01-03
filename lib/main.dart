@@ -47,29 +47,26 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: FutureBuilder(
-          future: fetchServs(),
-          initialData: [],
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return new Expanded(
-                      child: FlatButton(
-                    child: Text(snapshot.data[index]),
-                    onPressed: () {
-                      print(snapshot.data[index]);
-                    },
-                  ));
-                },
-              );
-            } else {
-              return CircularProgressIndicator();
-            }
-          },
-        ),
+      body: FutureBuilder(
+        future: fetchServs(),
+        initialData: [],
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return new FlatButton(
+                  child: Text(snapshot.data[index]),
+                  onPressed: () {
+                    print(snapshot.data[index]);
+                  },
+                );
+              },
+            );
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
