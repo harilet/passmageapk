@@ -9,7 +9,6 @@ Future fetchServs() async {
   if (response.statusCode == 200) {
     var list =
         json.decode(response.body)['serv'].map((data) => data['Serv']).toList();
-    print(list);
     return list;
   } else {
     throw Exception('Failed to load album');
